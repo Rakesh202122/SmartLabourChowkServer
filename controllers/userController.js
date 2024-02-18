@@ -10,35 +10,36 @@ import getDataUri from '../utils/dataUri.js'
 import { Stats } from '../models/Stats.js'
 
 export const register = catchAsyncError(async(req, res, next) => {
-    const {name, email, mobileNo, password} = req.body
-    const file = req.file
+    const {name, email, mobileNo, regType, password} = req.body
+    // const file = req.file
 
-    if (!name || !email || !mobileNo || !password || !file)
+    if (!name || !email || !mobileNo || !regType || !password )
         return next(new ErrorHandler('Please Enter all field', 400))
 
     let user = await User.findOne({email})
 
     if(user) return next(new ErrorHandler('User Already Exist', 409))
 
-    let userNo = await User.findOne({mobileNo})
+    // let userNo = await User.findOne({mobileNo})
 
-    if(userNo) return next(new ErrorHandler('User Already Exist', 409))
+    // if(userNo) return next(new ErrorHandler('User Already Exist', 409))
 
     //upload file on cloudnary
 
-    const fileUri = getDataUri(file)
+    // const fileUri = getDataUri(file)
 
-    const mycloud = await cloudinary.v2.uploader.upload(fileUri.content)
+    // const mycloud = await cloudinary.v2.uploader.upload(fileUri.content)
 
     user = await User.create({
         name, 
         email, 
         mobileNo,
+        regType,
         password, 
-        avatar:{
-            public_id:mycloud.public_id,
-            url:mycloud.secure_url,
-        },
+        // avatar:{
+        //     public_id:mycloud.public_id,
+        //     url:mycloud.secure_url,
+        // },
     })
     sendToken(res, user, 'Registered Successfully', 201)
 })

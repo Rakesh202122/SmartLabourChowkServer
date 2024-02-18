@@ -20,6 +20,10 @@ const schema = new mongoose.Schema({
         required:[true, 'Please Enter Your Mobile Number'],
         unique: true,
     },
+    regType: {
+        type: String,
+        required:[true, 'Please Enter Registration Type']
+    },
     password: {
         type: String,
         required:[true, 'Please Enter Your Email'],
@@ -39,16 +43,18 @@ const schema = new mongoose.Schema({
         id: String,
         status: String,
     },
-    avatar: {
-        public_id: {
-           type: String,
-           required: true,
-        },
-        url: {
-           type: String,
-           required: true,
-        },
-    },
+
+    // avatar: {
+    //     public_id: {
+    //        type: String,
+    //        required: true,
+    //     },
+    //     url: {
+    //        type: String,
+    //        required: true,
+    //     },
+    // },
+
     playlist:[
         {
             course:{
