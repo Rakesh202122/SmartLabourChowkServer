@@ -28,7 +28,7 @@ export const getAllCourses = catchAsyncError(async (req, res, next)=> {
 
 
 export const createCourse = catchAsyncError(async (req, res, next) => {
-    const { title,location, description, category, createdBy, postBy, mobileNo } = req.body;
+    const { title, location, description, category, createdBy, postBy, mobileNo } = req.body;
   
     if (!title || !location || !description || !category || !createdBy || !postBy || !mobileNo)
       return next(new ErrorHandler("please enter all the fields", 404));

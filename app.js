@@ -32,6 +32,9 @@ import worker from './routes/workerRoutes.js'
 import associate from './routes/associateRoutes.js'
 import company from './routes/companyRoutes.js'
 
+// import postjob from './routes/postjobRoutes.js'
+
+
 app.use('/api/v1', course)
 app.use('/api/v1', user)
 app.use('/api/v1', payment)
@@ -40,6 +43,8 @@ app.use('/api/v1', other)
 app.use('/api/v1', worker)
 app.use('/api/v1', associate)
 app.use('/api/v1', company)
+
+// app.use('/api/v1', postjob)
 
 
 export default app
